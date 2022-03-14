@@ -17,7 +17,9 @@
 <hr>
 
 
-## 3. 
+## 3. PostConstruct and PreDestroy
+- PostConstruct will execute code after constructor and after injection of dependencies
+- PreDestroy will execute the code before bean is destroyed
 
 
 
