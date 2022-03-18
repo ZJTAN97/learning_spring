@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/hello")
-public class HelloWorldController {
+@RequestMapping("/name")
+public class Name {
 	
 	// need a controller method to show the initial HTML form
-	@RequestMapping("/showForm")
+	@RequestMapping("/nameForm")
 	public String showForm() {
-		return "helloworld-form";
+		return "name-form";
 	}
 	
 	// need a controller method to process the HTML form
