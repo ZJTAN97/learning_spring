@@ -1,20 +1,18 @@
-package com.learnspring.hibernate.demo;
+package com.learnspring.hibernate.practice;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.learnspring.hibernate.demo.entity.Student;
+import com.learnspring.hibernate.demo.entity.Employee;
 
-public class CreateStudentDemo {
-
+public class CreateEmployee {
+	
 	public static void main(String[] args) {
-		
-		
 		// create session factory
 		SessionFactory factory = new Configuration()
 								.configure("hibernate.cfg.xml")
-								.addAnnotatedClass(Student.class)
+								.addAnnotatedClass(Employee.class)
 								.buildSessionFactory();
 				
 		// create session
@@ -24,13 +22,13 @@ public class CreateStudentDemo {
 			
 			// create a student object
 			System.out.println("Creating new student object...");
-			Student tempStudent = new Student("test1", "test1", "test1@test1.com");
+			Employee frontendDev = new Employee("Terry", "Terry", "front@end.com", "Front End Engineer");
 			// start a transaction
 			session.beginTransaction();
 
 			// save the student object
-			System.out.println("Saving student...");
-			session.save(tempStudent);
+			System.out.println("Saving employee...");
+			session.save(frontendDev);
 			
 			
 			// commit transaction
@@ -41,8 +39,5 @@ public class CreateStudentDemo {
 		} finally {
 			factory.close();
 		}
-		
-
 	}
-
 }

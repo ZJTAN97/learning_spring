@@ -30,14 +30,24 @@ public class QueryStudentDemo {
 			List<Student> theStudents = session.createQuery("from Student").getResultList();
 			
 			// query students: lastName="Kotlin"
-			theStudents = session.createQuery("from Student s where s.lastName='Kotlin'").getResultList();
+//			theStudents = session.createQuery("from Student s where s.lastName='Kotlin'").getResultList();
 			
 			
+			// query students: lastName="Kotlin" or firstName="Java"
+//			theStudents = 
+//					session.createQuery("from Student s where" 
+//							+ " s.lastName='Kotlin' OR s.firstName='Java'").list();
+			
+			
+			// query students where email LIKE %@Kotlin.com
+//			theStudents = session.createQuery("from Student s where"
+//					+ " s.email LIKE '%Kotlin.com'").list();
+
 			// display the students
 			for(Student tempStudent: theStudents) {
 				System.out.println(tempStudent);
 			}
-
+			
 			
 			// commit transaction
 			session.getTransaction().commit();

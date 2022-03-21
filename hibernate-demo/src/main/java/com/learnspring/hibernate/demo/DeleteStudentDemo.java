@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.learnspring.hibernate.demo.entity.Student;
 
-public class CreateStudentDemo {
+public class DeleteStudentDemo {
 
 	public static void main(String[] args) {
 		
@@ -22,21 +22,28 @@ public class CreateStudentDemo {
 		
 		try {
 			
-			// create a student object
-			System.out.println("Creating new student object...");
-			Student tempStudent = new Student("test1", "test1", "test1@test1.com");
-			// start a transaction
+			int studentId = 6;
+			int secondStudentId = 7;
+			
+			// get a new session and start transaction
+			session = factory.getCurrentSession();
 			session.beginTransaction();
-
-			// save the student object
-			System.out.println("Saving student...");
-			session.save(tempStudent);
+			
+			// retrieve student based on the id: primary key
+			System.out.println("\nGetting student with id: " + studentId);
+			
+			Student myStudent = session.get(Student.class, studentId);
+			
+			System.out.println("Deleting student: " + myStudent);
+			session.delete(myStudent);
+			
+			System.out.println("Deleting student using query method..");
+			session.createQuery("delete from Student where id=" + secondStudentId).executeUpdate();
 			
 			
 			// commit transaction
 			session.getTransaction().commit();
-			
-			System.out.println("Done with transaction..");
+			System.out.println("Done!");
 			
 		} finally {
 			factory.close();
