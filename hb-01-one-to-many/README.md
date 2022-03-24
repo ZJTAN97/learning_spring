@@ -55,8 +55,21 @@
 
 ## 7. Fetch Types: Eager vs Lazy Loading
 - Eager will retrieve everything
-- Lazy will retrieve on request
+- Lazy will retrieve on request/demand, session has to be opened.
+- if lazy load and session is closed, Hibernate will throw an exception.
 
 <br>
 <hr>
+
+
+## 8. Default Fetch Types
+- @OneToOne FetchType.EAGER
+- @OneToMany FetchType.LAZY
+- @ManyToOne FetchType.Eager
+- @ManyToMany FetchType.LAZY
+
+<br>
+<hr>
+
+
 
