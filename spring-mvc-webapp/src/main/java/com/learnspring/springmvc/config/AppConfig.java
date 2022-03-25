@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -16,9 +17,12 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.learnspring.springmvc.entity.Customer;
+
 @Configuration
 @PropertySource("classpath:database.properties")
 @EnableTransactionManagement
+//@ComponentScans(value= {@ComponentScan("com.learnspring.springmvc.dao")})
 public class AppConfig {
 
     @Autowired
@@ -29,7 +33,7 @@ public class AppConfig {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan(new String[] {
-            "net.javaguides.springmvc.entity"
+            "com.learnspring.springmvc.entity"
         });
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
