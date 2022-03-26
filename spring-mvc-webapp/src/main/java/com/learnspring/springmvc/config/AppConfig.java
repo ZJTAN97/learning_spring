@@ -17,7 +17,6 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.learnspring.springmvc.entity.Customer;
 
 @Configuration
 @PropertySource("classpath:database.properties")
@@ -27,11 +26,12 @@ public class AppConfig {
 
     @Autowired
     private Environment environment;
-
+    
+    // Customer Session Factory
     @Bean
-    public LocalSessionFactoryBean sessionFactory() {
+    public LocalSessionFactoryBean customerSessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setDataSource(customerDataSource());
         sessionFactory.setPackagesToScan(new String[] {
             "com.learnspring.springmvc.entity"
         });
@@ -40,14 +40,16 @@ public class AppConfig {
     }
 
     @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
-        dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
-        dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
-        dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
-        return dataSource;
+    public DataSource customerDataSource() {
+        DriverManagerDataSource customerDataSource = new DriverManagerDataSource();
+        customerDataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
+        customerDataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
+        customerDataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
+        customerDataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
+        return customerDataSource;
     }
+    
+    
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
@@ -61,7 +63,8 @@ public class AppConfig {
     @Bean
     public HibernateTransactionManager getTransactionManager() {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(sessionFactory().getObject());
+        transactionManager.setSessionFactory(customerSessionFactory().getObject());
         return transactionManager;
     }
+ 
 }

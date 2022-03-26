@@ -7,6 +7,7 @@
 
 <head>
 <title>List Customers</title>
+<link type="text/css" href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 </head>
 
 
@@ -20,6 +21,11 @@
 
 <div id="container">
 	<div id="content">
+	
+	<input type="button" value="Add Customer"  
+	  onclick="window.location.href='showFormForAdd'; return false;"
+	  class="add-button"
+	/>
 		
 		<table>
 		

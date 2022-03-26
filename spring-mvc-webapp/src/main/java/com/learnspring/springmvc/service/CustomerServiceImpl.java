@@ -1,0 +1,32 @@
+package com.learnspring.springmvc.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.learnspring.springmvc.dao.CustomerDAO;
+import com.learnspring.springmvc.entity.Customer;
+
+@Service
+public class CustomerServiceImpl implements CustomerService {
+
+	// inject customer DAO
+	@Autowired
+	private CustomerDAO customerDAO;
+	
+	@Override
+	@Transactional
+	public List<Customer> getCustomers() {
+		return customerDAO.getCustomers();
+	}
+
+	@Override
+	@Transactional
+	public void saveCustomer(Customer theCustomer) {
+		// TODO Auto-generated method stub
+		customerDAO.saveCustomer(theCustomer);
+	}
+
+}
