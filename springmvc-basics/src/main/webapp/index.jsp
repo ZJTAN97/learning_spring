@@ -1,0 +1,1 @@
+<% response.sendRedirect("/springmvc-basics/home"); %>
