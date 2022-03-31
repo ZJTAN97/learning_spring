@@ -1,14 +1,16 @@
-package com.learnspring.hibernate.demo;
+package com.learnspring.hibernate.one2many;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.learnspring.hibernate.demo.entity.Course;
-import com.learnspring.hibernate.demo.entity.Instructor;
-import com.learnspring.hibernate.demo.entity.InstructorDetail;
+import com.learnspring.hibernate.entity.Course;
+import com.learnspring.hibernate.entity.Instructor;
+import com.learnspring.hibernate.entity.InstructorDetail;
+import com.learnspring.hibernate.entity.Review;
 
-public class DeleteCourseDemo {
+
+public class GetCourseAndReviewsDemo {
 	public static void main(String[] args) {
 		
 		SessionFactory factory = new Configuration()
@@ -16,6 +18,7 @@ public class DeleteCourseDemo {
 									.addAnnotatedClass(Instructor.class)
 									.addAnnotatedClass(InstructorDetail.class)
 									.addAnnotatedClass(Course.class)
+									.addAnnotatedClass(Review.class)
 									.buildSessionFactory();
 		
 		Session session = factory.getCurrentSession();
@@ -24,18 +27,23 @@ public class DeleteCourseDemo {
 			
 			session.beginTransaction();
 			
-			int theId = 11;
+			// get the course
+			int theId = 12;
 			Course selectedCourse = session.get(Course.class, theId);
 			
-			session.delete(selectedCourse);
-
-			session.getTransaction().commit();
+			// print the course
+			System.out.println("Selected Course: " + selectedCourse);
 			
+			// print the course reviews
+			System.out.println(selectedCourse.getReviews());
 			System.out.println("Done.");
 			
 		}
+		catch(Exception exc) {
+			exc.printStackTrace();
+		}
 		finally {
-			
+			session.close();
 		}
 		
 	}

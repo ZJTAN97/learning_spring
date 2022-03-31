@@ -22,7 +22,7 @@ public class CreateDemo {
 		try {
 			
 			Instructor newInstructor = new Instructor(
-					"Docker", "Kubernetes,", "Docker@Kubernetes.com");
+					"React", "Spring,", "React@Spring.com");
 			InstructorDetail newInstructorDetail = new InstructorDetail(
 					"https://askmaesenior.com", "calisthenics");
 			

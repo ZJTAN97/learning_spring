@@ -1,4 +1,4 @@
-package com.learnspring.hibernate.demo.entity;
+package com.learnspring.hibernate.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

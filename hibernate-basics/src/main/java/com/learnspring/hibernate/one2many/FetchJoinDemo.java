@@ -1,13 +1,15 @@
-package com.learnspring.hibernate.demo;
+package com.learnspring.hibernate.one2many;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import com.learnspring.hibernate.demo.entity.Course;
-import com.learnspring.hibernate.demo.entity.Instructor;
-import com.learnspring.hibernate.demo.entity.InstructorDetail;
+import com.learnspring.hibernate.entity.Course;
+import com.learnspring.hibernate.entity.Instructor;
+import com.learnspring.hibernate.entity.InstructorDetail;
+import com.learnspring.hibernate.entity.Review;
+
 
 public class FetchJoinDemo {
 	public static void main(String[] args) {
@@ -17,6 +19,7 @@ public class FetchJoinDemo {
 									.addAnnotatedClass(Instructor.class)
 									.addAnnotatedClass(InstructorDetail.class)
 									.addAnnotatedClass(Course.class)
+									.addAnnotatedClass(Review.class)
 									.buildSessionFactory();
 		
 		Session session = factory.getCurrentSession();

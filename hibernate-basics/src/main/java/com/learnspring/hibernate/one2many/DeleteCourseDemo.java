@@ -1,45 +1,48 @@
-package com.learnspring.hibernate.demo;
+package com.learnspring.hibernate.one2many;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.learnspring.hibernate.demo.entity.Instructor;
-import com.learnspring.hibernate.demo.entity.InstructorDetail;
+import com.learnspring.hibernate.entity.Course;
+import com.learnspring.hibernate.entity.Instructor;
+import com.learnspring.hibernate.entity.InstructorDetail;
+import com.learnspring.hibernate.entity.Review;
 
-public class GetInstructorDetailDemo {
 
+public class DeleteCourseDemo {
 	public static void main(String[] args) {
 		
 		SessionFactory factory = new Configuration()
 									.configure("hibernate.cfg.xml")
 									.addAnnotatedClass(Instructor.class)
 									.addAnnotatedClass(InstructorDetail.class)
+									.addAnnotatedClass(Course.class)
+									.addAnnotatedClass(Review.class)
 									.buildSessionFactory();
 		
 		Session session = factory.getCurrentSession();
 		
-		try {	
+		try {
+			
 			session.beginTransaction();
 			
-			int theId = 10;
-			InstructorDetail selectedInstructorDetail = session.get(InstructorDetail.class, theId);
+			int theId = 11;
+			Course selectedCourse = session.get(Course.class, theId);
 			
-			System.out.println("Selected Instructor Detail: " + selectedInstructorDetail);			
-			System.out.println(selectedInstructorDetail.getInstructor());
-			
+			session.delete(selectedCourse);
+
 			session.getTransaction().commit();
+			
+			System.out.println("Done.");
 			
 		}
 		catch(Exception exc) {
 			exc.printStackTrace();
 		}
 		finally {
-			// handle connection leak issue
 			session.close();
-			factory.close();
 		}
 		
 	}
-
 }

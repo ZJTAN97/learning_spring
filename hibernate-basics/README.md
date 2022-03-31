@@ -60,3 +60,12 @@
 <br>
 <hr>
 
+## 8. Default Fetch Types
+- @OneToOne FetchType.EAGER
+- @OneToMany FetchType.LAZY
+- @ManyToOne FetchType.Eager
+- @ManyToMany FetchType.LAZY
+
+<br>
+<hr>
+

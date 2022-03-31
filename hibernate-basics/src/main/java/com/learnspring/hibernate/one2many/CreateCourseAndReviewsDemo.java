@@ -1,13 +1,13 @@
-package com.learnspring.hibernate.demo;
+package com.learnspring.hibernate.one2many;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.learnspring.hibernate.demo.entity.Course;
-import com.learnspring.hibernate.demo.entity.Instructor;
-import com.learnspring.hibernate.demo.entity.InstructorDetail;
-import com.learnspring.hibernate.demo.entity.Review;
+import com.learnspring.hibernate.entity.Course;
+import com.learnspring.hibernate.entity.Instructor;
+import com.learnspring.hibernate.entity.InstructorDetail;
+import com.learnspring.hibernate.entity.Review;
 
 public class CreateCourseAndReviewsDemo {
 	public static void main(String[] args) {
@@ -39,11 +39,14 @@ public class CreateCourseAndReviewsDemo {
 
 			session.getTransaction().commit();
 			
-			System.out.println("Done.");
+			System.out.println("Added new courses.");
 			
+		} 
+		catch (Exception exc) {
+			exc.printStackTrace();
 		}
 		finally {
-			
+			session.close();
 		}
 		
 	}
