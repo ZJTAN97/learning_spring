@@ -1,10 +1,10 @@
-package com.luv2code.springdemo.service;
+package com.learnspring.rest.dao;
 
 import java.util.List;
 
-import com.luv2code.springdemo.entity.Customer;
+import com.learnspring.rest.entity.Customer;
 
-public interface CustomerService {
+public interface CustomerDAO {
 
 	public List<Customer> getCustomers();
 
@@ -13,5 +13,5 @@ public interface CustomerService {
 	public Customer getCustomer(int theId);
 
 	public void deleteCustomer(int theId);
-	
+
 }

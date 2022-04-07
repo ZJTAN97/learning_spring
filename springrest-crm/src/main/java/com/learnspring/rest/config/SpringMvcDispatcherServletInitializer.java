@@ -1,8 +1,8 @@
-package com.luv2code.springdemo.config;
+package com.learnspring.rest.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class MySpringMvcDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class SpringMvcDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
@@ -12,7 +12,7 @@ public class MySpringMvcDispatcherServletInitializer extends AbstractAnnotationC
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { DemoAppConfig.class };
+		return new Class[] { AppConfig.class };
 	}
 
 	@Override
@@ -21,9 +21,3 @@ public class MySpringMvcDispatcherServletInitializer extends AbstractAnnotationC
 	}
 
 }
-
-
-
-
-
-
