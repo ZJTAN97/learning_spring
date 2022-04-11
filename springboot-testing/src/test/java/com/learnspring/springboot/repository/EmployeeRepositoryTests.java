@@ -85,5 +85,20 @@ public class EmployeeRepositoryTests {
 		assertThat(employee).isEqualTo(employeeDB);
 		assertThat(employeeDB).isNotNull();
 	}
+	
+	@Test
+	public void givenEmployeeObject_whenFindByFirstName_thenReturnEmployeeObject() {
+
+		// given - precondition or setup
+		Employee employee = new Employee("Docker", "Kubernetes",
+				"Docker@Kubernetes.com");
+		employeeRepository.save(employee);
+
+		// when - action or the behavior to be tested
+		Employee employeeDB = employeeRepository.findByFirstName(employee.getFirstName()).get();
+		// then - verify the output
+		assertThat(employee).isEqualTo(employeeDB);
+		assertThat(employeeDB).isNotNull();
+	}
 
 }
