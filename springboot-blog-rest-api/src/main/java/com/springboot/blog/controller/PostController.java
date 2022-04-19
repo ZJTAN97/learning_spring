@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,8 +28,7 @@ public class PostController {
 	public PostController(PostService postService) {
 		this.postService = postService;
 	}
-
-	@PreAuthorize("hasRole('ADMIN')")
+	
 	@PostMapping
 	public ResponseEntity<PostDto> createPost(
 			@Valid @RequestBody PostDto postDto) {
@@ -38,7 +36,6 @@ public class PostController {
 				HttpStatus.CREATED);
 	}
 
-	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	@GetMapping
 	public PostResponse getAllPosts(
 			@RequestParam(value = "pageNo", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) int pageNo,
@@ -54,7 +51,6 @@ public class PostController {
 		return ResponseEntity.ok(postService.getPostById(id));
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/{id}")
 	public ResponseEntity<PostDto> updatePost(
 			@Valid @RequestBody PostDto postDto,
@@ -63,7 +59,6 @@ public class PostController {
 		return new ResponseEntity<>(postResponse, HttpStatus.OK);
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deletePost(
 			@PathVariable(name = "id") Long id) {
