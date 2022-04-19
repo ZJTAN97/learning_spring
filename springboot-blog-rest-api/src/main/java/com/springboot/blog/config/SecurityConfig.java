@@ -41,6 +41,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
+	protected void configure(AuthenticationManagerBuilder auth)
+			throws Exception {
+		auth.userDetailsService(userDetailsService)
+				.passwordEncoder(passwordEncoder());
+	}
+
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().exceptionHandling()
 				.authenticationEntryPoint(authenticationEntryPoint).and()
@@ -52,13 +59,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.addFilterBefore(jwtAuthenticationFilter(),
 				UsernamePasswordAuthenticationFilter.class);
-	}
-
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth)
-			throws Exception {
-		auth.userDetailsService(userDetailsService)
-				.passwordEncoder(passwordEncoder());
 	}
 
 	@Override
