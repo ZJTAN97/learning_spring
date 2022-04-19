@@ -12,6 +12,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,12 +40,9 @@ public class CustomAuthenticationFilter
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request,
 			HttpServletResponse response) throws AuthenticationException {
-		
 		// attempt login + controller
-		
 		String username = request.getParameter("usernameOrEmail");
 		String password = request.getParameter("password");
-		System.out.println("----- Logging in -----");
 		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
 				username, password);
 		return authenticationManager.authenticate(authenticationToken);
@@ -64,30 +63,42 @@ public class CustomAuthenticationFilter
 
 		Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
 		String access_token = JWT.create().withSubject(user.getUsername())
-				.withExpiresAt(new Date(
-						System.currentTimeMillis() + 20 * 60 * 1000))
+				.withExpiresAt(
+						new Date(System.currentTimeMillis() + 600000))
 				.withIssuer(request.getRequestURL().toString())
 				.withClaim("roles",
 						user.getAuthorities().stream()
 								.map(GrantedAuthority::getAuthority)
 								.collect(Collectors.toList()))
 				.sign(algorithm);
-		String refresh_token = JWT.create().withSubject(user.getUsername())
-				.withExpiresAt(
-						new Date(System.currentTimeMillis() + 30 * 60 * 1000))
-				.withIssuer(request.getRequestURL().toString()).sign(algorithm);
+
 		Map<String, String> tokens = new HashMap<>();
 		tokens.put("access_token", access_token);
-		tokens.put("refresh_token", refresh_token);
 		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-		
-		// set httponly cookie
+
+		// set httponly cookie for refresh token
+		String refresh_token = JWT.create().withSubject(user.getUsername())
+				.withExpiresAt(
+						new Date(System.currentTimeMillis() + 262980000))
+				.withIssuer(request.getRequestURL().toString())
+				.sign(algorithm);
 		Cookie cookie = new Cookie("refresh", refresh_token);
 		cookie.setHttpOnly(true);
 		response.addCookie(cookie);
-		
+
 		new ObjectMapper().writeValue(response.getOutputStream(), tokens);
 
+	}
+
+	@Override
+	protected void unsuccessfulAuthentication(HttpServletRequest request,
+			HttpServletResponse response, AuthenticationException failed)
+			throws IOException, ServletException {
+		Map<String, String> error = new HashMap<>();
+		error.put("error_message", failed.getMessage());
+		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+		response.setStatus(HttpStatus.FORBIDDEN.value());
+		new ObjectMapper().writeValue(response.getOutputStream(), error);
 	}
 
 }

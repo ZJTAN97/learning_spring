@@ -1,6 +1,5 @@
 package com.springboot.blog.controller;
 
-import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 
 import java.io.IOException;
@@ -10,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,11 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,9 +41,6 @@ import com.springboot.blog.security.CustomerUserDetailsService;
 @RestController
 @RequestMapping("/api")
 public class AuthController {
-
-	@Autowired
-	private AuthenticationManager authenticationManager;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -96,12 +89,9 @@ public class AuthController {
 	@GetMapping("/token/refresh")
 	public void refreshToken(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
-		String authorizationHeader = request.getHeader(AUTHORIZATION);
-		if (authorizationHeader != null
-				&& authorizationHeader.startsWith("Bearer ")) {
+		String refresh_token = extractCookie(request);
+		if (refresh_token != null) {
 			try {
-				String refresh_token = authorizationHeader
-						.substring("Bearer ".length());
 				Algorithm algorithm = Algorithm
 						.HMAC256("secret".getBytes());
 				JWTVerifier verifier = JWT.require(algorithm).build();
@@ -121,14 +111,12 @@ public class AuthController {
 						.sign(algorithm);
 				Map<String, String> tokens = new HashMap<>();
 				tokens.put("access_token", access_token);
-				tokens.put("refresh_token", refresh_token);
 				response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 				new ObjectMapper().writeValue(response.getOutputStream(),
 						tokens);
 			} catch (Exception exception) {
 				response.setHeader("error", exception.getMessage());
 				response.setStatus(FORBIDDEN.value());
-				// response.sendError(FORBIDDEN.value());
 				Map<String, String> error = new HashMap<>();
 				error.put("error_message", exception.getMessage());
 				response.setContentType(
@@ -139,6 +127,18 @@ public class AuthController {
 		} else {
 			throw new RuntimeException("Refresh token is missing");
 		}
+	}
+
+	private String extractCookie(HttpServletRequest request) {
+		Cookie cookies[] = request.getCookies();
+		if (cookies == null)
+			throw new RuntimeException("No cookies found");
+		for (Cookie c : request.getCookies()) {
+			if (c.getName().equals("refresh")) {
+				return c.getValue();
+			}
+		}
+		return null;
 	}
 
 }
