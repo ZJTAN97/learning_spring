@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+
+  accounts-service:
+    container_name: accounts-service
+    build:
+      context: ./accounts-service
+      dockerfile: .
+    ports:
+      - "8080:8080"
+    networks:
+      - microservices-sample-network
+
+  loans-service:
+    container_name: loans-service
+    build:
+      context: ./loans-service
+      dockerfile: .
+    ports:
+      - "8090:8090"
+    networks:
+      - microservices-sample-network
+
+  cards-service:
+    container_name: cards-service
+    build:
+      context: ./cards-service
+      dockerfile: .
+    ports:
+      - "9000:9000"
+    networks:
+      - microservices-sample-network
+
+networks:
+  microservices-sample-network:
