@@ -11,6 +11,8 @@ services:
       - "8080:8080"
     networks:
       - microservices-sample-network
+    depends_on:
+      - config-server
 
   loans-service:
     container_name: loans-service
@@ -21,6 +23,8 @@ services:
       - "8090:8090"
     networks:
       - microservices-sample-network
+    depends_on:
+      - config-server
 
   cards-service:
     container_name: cards-service
@@ -29,6 +33,18 @@ services:
       dockerfile: .
     ports:
       - "9000:9000"
+    networks:
+      - microservices-sample-network
+    depends_on:
+      - config-server
+
+  config-server:
+    container_name: config-server
+    build:
+      context: ./config-server
+      dockerfile: .
+    ports:
+      - "8071:8071"
     networks:
       - microservices-sample-network
 

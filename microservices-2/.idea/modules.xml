@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/accounts-service/accounts-service.iml" filepath="$PROJECT_DIR$/accounts-service/accounts-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/cards-service/cards-service.iml" filepath="$PROJECT_DIR$/cards-service/cards-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/config-server/config-server.iml" filepath="$PROJECT_DIR$/config-server/config-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/loans-service/loans-service.iml" filepath="$PROJECT_DIR$/loans-service/loans-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/microservices-2.iml" filepath="$PROJECT_DIR$/.idea/microservices-2.iml" />
     </modules>
