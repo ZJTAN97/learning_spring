@@ -2,3 +2,8 @@ Servers
 *.jar
 *.class
 *.metadata
+
+*.idea/
+*.iws
+*.iml
+*.ipr

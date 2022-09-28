@@ -6,7 +6,7 @@ services:
     container_name: accounts-service
     build:
       context: ./accounts-service
-      dockerfile: .
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     networks:
@@ -18,7 +18,7 @@ services:
     container_name: loans-service
     build:
       context: ./loans-service
-      dockerfile: .
+      dockerfile: Dockerfile
     ports:
       - "8090:8090"
     networks:
@@ -30,7 +30,7 @@ services:
     container_name: cards-service
     build:
       context: ./cards-service
-      dockerfile: .
+      dockerfile: Dockerfile
     ports:
       - "9000:9000"
     networks:
@@ -42,7 +42,7 @@ services:
     container_name: config-server
     build:
       context: ./config-server
-      dockerfile: .
+      dockerfile: Dockerfile
     ports:
       - "8071:8071"
     networks:
