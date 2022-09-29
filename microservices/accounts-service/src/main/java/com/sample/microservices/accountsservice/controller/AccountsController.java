@@ -5,6 +5,9 @@ import com.sample.microservices.accountsservice.client.LoansFeignClient;
 import com.sample.microservices.accountsservice.config.AccountsServiceConfig;
 import com.sample.microservices.accountsservice.model.*;
 import com.sample.microservices.accountsservice.repository.AccountsRepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +41,10 @@ public class AccountsController {
     }
 
     @PostMapping("/myCustomerDetails")
+//    @CircuitBreaker(name = "detailsForCustomerSupportApp", fallbackMethod =
+//      "myCustomerDetailsFallBack")
+    @Retry(name = "retryForCustomerDetails", fallbackMethod =
+      "myCustomerDetailsFallback")
     public CustomerDetails myCustomerDetails(@RequestBody Customer customer) {
 
         Accounts accounts =
@@ -55,5 +62,28 @@ public class AccountsController {
           .build();
 
     }
+
+    @GetMapping("/sayHello")
+    @RateLimiter(name= "sayHello", fallbackMethod = "sayHelloFallback")
+    public String sayHello() {
+        return "Welcome to sample bank application backend";
+    }
+
+    private String sayHelloFallback(Throwable t) {
+        return "You spammed too much.";
+    }
+
+    private CustomerDetails myCustomerDetailsFallBack(Customer customer,
+                                                      Throwable t) {
+        Accounts accounts =
+          accountsRepository.findByCustomerId(customer.getCustomerId());
+        List<Loans> loans = loansFeignClient.getLoansDetails(customer);
+        return CustomerDetails
+          .builder()
+          .accounts(accounts)
+          .loans(loans)
+          .build();
+    }
+
 
 }
