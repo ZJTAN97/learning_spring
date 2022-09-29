@@ -49,6 +49,13 @@ server.port=8071
 
 ## Spring Cloud Gateway
 
+- For building an API gateway and is intended to sit between a requester and a
+  resource that is being requested.
+
+Client request --> Gateway Handler Mapping using Routing Configs -->
+Predicates (To check if the requests fulfill a set of given conditions) -->
+Prefilters --> Microservices / Eureka Server
+
 <br>
 <hr>
 <br>
@@ -111,31 +118,69 @@ Circuit Breaker Pattern
 - Advantages for this pattern includes, failing fast, fail gracefully and
   recover seamlessly.
 
-1. CLOSED - initially the circuit breaker starts with Closed status and 
-   accepts client requests
-2. OPEN - if circuit breaker sees a threshold requests are failing, then it 
-   will OPEN the circuit which will make requests fail fast
-3. HALF_OPEN - periodically circuit breaker checks if the issue is resolved 
-   by allowing few requests. Based on the results it will either go to 
-   CLOSED or OPEN.
+1. CLOSED - initially the circuit breaker starts with Closed status and accepts
+   client requests
+2. OPEN - if circuit breaker sees a threshold requests are failing, then it will
+   OPEN the circuit which will make requests fail fast
+3. HALF_OPEN - periodically circuit breaker checks if the issue is resolved by
+   allowing few requests. Based on the results it will either go to CLOSED or
+   OPEN.
 
 <br>
 
 Retry Pattern
-- configure the following values, `maxAttempts`, `waitDuration`, 
+
+- configure the following values, `maxAttempts`, `waitDuration`,
   `retryExceptions`, `ignoreExceptions`
-- can also configure a fallback mechanism if the service call fails even 
-  after multiple retry attempts.
+- can also configure a fallback mechanism if the service call fails even after
+  multiple retry attempts.
 
 <br>
 
 Rate Limiter Pattern
-- can configure the following values, `timeoutDuration`, `limitForPeriod`, 
+
+- can configure the following values, `timeoutDuration`, `limitForPeriod`,
   `limitRefreshPeriod`
 - Can also define fallback mechanism
 - Useful against DDOS attacks, protects against cascading failure.
 
-
 <br>
 <hr>
 <br>
+
+## Distributed Tracing & Log Aggregation
+
+- Using Spring Cloud Sleuth and Zipkin
+
+<br>
+
+Spring Cloud Sleuth
+
+- provides Spring Boot autoconfiguration for distributed tracing
+- adds trace and span ids to all the logs
+- Does this by adding the filters and interacting with other Spring components
+  to let the correlation IDs being generated pass through to all the system
+  calls.
+
+```
+[<App Name>,<Trace ID>,<Span ID>]
+
+Application Name: application name where the log entry is being made. Gets 
+the name from spring.application.name property
+
+Trace ID: equivalent term for correlation Id, unique number that represents 
+an entire transaction
+
+Span ID: Unique ID that represents part of the overall transaction. Each 
+service participating within the transaction will have its own span ID. 
+Particularly relevant when you integrate Zipkin to visualize your transactions
+
+```
+
+<br>
+
+Zipkin
+
+- Open-source data-visualization tool that can helps aggregating all the logs
+  and gather timing data needed to troubleshoot latency problems in
+  microservices architecture

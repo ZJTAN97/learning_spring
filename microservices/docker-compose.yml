@@ -1,7 +1,6 @@
 version: "3.8"
 
 services:
-
   accounts-service:
     container_name: accounts-service
     build:
@@ -16,7 +15,7 @@ services:
       - eureka-server
     environment:
       SPRING_PROFILES_ACTIVE: default
-      SPRING_CONFIG_IMPORT: optional:configserver:http://localhost:8071
+      SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8071
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8070/eureka/
 
   loans-service:
@@ -33,7 +32,7 @@ services:
       - eureka-server
     environment:
       SPRING_PROFILES_ACTIVE: default
-      SPRING_CONFIG_IMPORT: optional:configserver:http://localhost:8071
+      SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8071
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8070/eureka/
 
   cards-service:
@@ -50,7 +49,7 @@ services:
       - eureka-server
     environment:
       SPRING_PROFILES_ACTIVE: default
-      SPRING_CONFIG_IMPORT: optional:configserver:http://localhost:8071
+      SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8071
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8070/eureka/
 
   config-server:
@@ -80,7 +79,31 @@ services:
         max_attempts: 3
     environment:
       SPRING_PROFILES_ACTIVE: default
-      SPRING_CONFIG_IMPORT: optional:configserver:http://localhost:8071
+      SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8071
+
+  gateway-server:
+    container_name: gateway-server
+    build:
+      context: ./gateway-server
+      dockerfile: Dockerfile
+    ports:
+      - "8072:8072"
+    networks:
+      - microservices-sample-network
+    depends_on:
+      - config-server
+      - eureka-server
+      - accounts-service
+      - cards-service
+      - loans-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+      SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8071
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8070/eureka/
 
 networks:
   microservices-sample-network:
