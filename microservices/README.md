@@ -53,13 +53,34 @@ server.port=8071
 <hr>
 <br>
 
-## Eureka Server For naming
+## Eureka Server For naming (Service Discovery)
 
 - Service discover and registration deals with the problems about how 
   microservices talk to each other, i.e. perform API calls
 - A central server that maintain a global view of addresses
 - Microservices connect to this central server to register their address 
   when they start & ready
+- Mainly service discovery consists of a key-value store (Service Registry) 
+  and an API to read from and write to this store. New instances of 
+  applications are saved to this service registry and deleted when the 
+  service is down or not healthy.
+
+<br>
+
+Advantages of Service Discovery approach
+- No limitations on availability
+- Dynamically managed IPs, configurations & Load balanced
+
+<br>
+<hr>
+<br>
+
+## Spring Cloud Support for Service Discovery & Registration
+- Spring Cloud Netflix's Eureka Service which act as a service discovery 
+  agent (other examples include Apache Zookeper, Consul etc.)
+- Spring Cloud Load Balancer library for client-side load balancing
+- Netflix Feign client to look up for a service between microservices
+
 
 <br>
 <hr>

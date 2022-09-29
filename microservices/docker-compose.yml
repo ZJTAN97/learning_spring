@@ -13,6 +13,11 @@ services:
       - microservices-sample-network
     depends_on:
       - config-server
+      - eureka-server
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka/
 
   loans-service:
     container_name: loans-service
@@ -25,6 +30,11 @@ services:
       - microservices-sample-network
     depends_on:
       - config-server
+      - eureka-server
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka/
 
   cards-service:
     container_name: cards-service
@@ -37,6 +47,11 @@ services:
       - microservices-sample-network
     depends_on:
       - config-server
+      - eureka-server
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka/
 
   config-server:
     container_name: config-server
@@ -47,6 +62,27 @@ services:
       - "8071:8071"
     networks:
       - microservices-sample-network
+
+  eureka-server:
+    container_name: eureka-server
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    ports:
+      - "8070:8070"
+    networks:
+      - microservices-sample-network
+    depends_on:
+      - config-server
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+      SPRING_CONFIG_IMPORT: configserver:http://localhost:8071/
 
 networks:
   microservices-sample-network:
