@@ -17,6 +17,7 @@ services:
       SPRING_PROFILES_ACTIVE: default
       SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8071
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8070/eureka/
+      SPRING_ZIPKIN_BASEURL: http://zipkin:9411/
 
   loans-service:
     container_name: loans-service
@@ -34,6 +35,7 @@ services:
       SPRING_PROFILES_ACTIVE: default
       SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8071
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8070/eureka/
+      SPRING_ZIPKIN_BASEURL: http://zipkin:9411/
 
   cards-service:
     container_name: cards-service
@@ -51,6 +53,7 @@ services:
       SPRING_PROFILES_ACTIVE: default
       SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8071
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8070/eureka/
+      SPRING_ZIPKIN_BASEURL: http://zipkin:9411/
 
   config-server:
     container_name: config-server
@@ -80,6 +83,7 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: default
       SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8071
+      SPRING_ZIPKIN_BASEURL: http://zipkin:9411/
 
   gateway-server:
     container_name: gateway-server
@@ -104,6 +108,7 @@ services:
       SPRING_PROFILES_ACTIVE: default
       SPRING_CONFIG_IMPORT: optional:configserver:http://config-server:8071
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8070/eureka/
+      SPRING_ZIPKIN_BASEURL: http://zipkin:9411/
 
   zipkin:
     image: openzipkin/zipkin
