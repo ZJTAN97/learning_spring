@@ -22,7 +22,32 @@ public class TaskService {
     public List<Task> findAllTasks() {
         return taskRepository.findAll();
     }
-    // https://www.youtube.com/watch?v=qVNOw9TWwxo
-    // TODO: 15:26
+
+    public Task getTaskById(String taskId) {
+        return taskRepository.findById(taskId).get();
+    }
+
+    public List<Task> getTaskBySeverity(int severity) {
+        return taskRepository.findBySeverity(severity);
+    }
+
+    public List<Task> getTaskByAssignee(String assignee) {
+        return taskRepository.getTaskByAssignee(assignee);
+    }
+
+    public Task updateTask(Task taskRequest) {
+        Task task = taskRepository.findById(taskRequest.getTaskId()).get();
+        task.setDescription(taskRequest.getDescription());
+        task.setSeverity(taskRequest.getSeverity());
+        task.setStoryPoint(taskRequest.getStoryPoint());
+        task.setAssignee(taskRequest.getAssignee());
+        return taskRepository.save(task);
+    }
+
+    public String deleteTask(String taskId) {
+        taskRepository.deleteById(taskId);
+        return "Task deleted.";
+    }
+
 
 }
