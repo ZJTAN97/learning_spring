@@ -5,7 +5,7 @@
 
 ## Spring Cloud Config Server
 
-- Provides service and client-side suppport for externalized configuration in a
+- Provides service and client-side support for externalized configuration in a
   distributed system
 - With config server, you have a central place to manage external properties for
   applications across all environments.
