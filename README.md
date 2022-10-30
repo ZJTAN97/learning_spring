@@ -85,7 +85,39 @@ Differences between the different types
 
 # @Configuration annotation
 
--   The @Configuration annotation indicates that the class is a soruce of bean definitions
+-   The @Configuration annotation indicates that the class has @Bean definitio methods. So Spring container can process the class and generate Spring Beans to be used in the application.
+
+Example use case
+
+```
+@Configuration
+public class MyConfiguration {
+
+    @Bean
+    public MyBean myBean() {
+		return new MyBean();
+	}
+
+}
+
+-------
+
+public class MySpringApp {
+
+	public static void main(String[] args) {
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+		ctx.register(MyConfiguration.class);
+		ctx.refresh();
+
+		MyBean mb1 = ctx.getBean(MyBean.class);
+		MyBean mb2 = ctx.getBean(MyBean.class);
+
+		ctx.close();
+	}
+
+}
+
+```
 
 ```
 @Configuration
