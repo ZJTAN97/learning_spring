@@ -221,8 +221,7 @@ Pros
 
 Cons
 
--   Large programming overhead
--   No encapsulaion
+-   Large programming overhead -   No encapsulaion
 -   Hard to implement MVC concept
 -   Queries are DBMS specifics
 
@@ -248,5 +247,4 @@ Cons
 -   Not thread-safe
 
 <br>
-<hr>
 <br>
