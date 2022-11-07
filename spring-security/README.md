@@ -70,3 +70,69 @@ On Failure
 - Exposes two beans to set some specifics for the web security configuration
   1. `SecurityFilterChain`
   2. `UserDetailsService`
+
+
+<br>
+
+# Filters in Spring Web Applications
+
+Common use cases of filters are
+- Logging requests and response
+- Logging request processing time
+- Formatting of request body or header
+- Verifying authentication tokens
+- Compressing response
+- Performing Image Conversions
+
+<br>
+
+The `Filter` Interface contains the three methods
+
+`init()`
+- Web container call this method to indicate a filter is being placed into 
+  service.
+- Web container cannot place the filter into service if the method throws a 
+  `ServletException` or does not return within a specified time period by 
+  the web container
+
+<br>
+
+`doFilter`
+- invokes this method everytime when the client sends a request or 
+  application sends back a response
+
+<br>
+
+`destroy()`
+- Web container call this method to indicate to a filter that it is being 
+  taken out of service
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

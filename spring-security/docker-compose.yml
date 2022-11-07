@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  mysqldb:
+    container_name: security_db
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=security_db
+      - MYSQL_USER=admin
+      - MYSQL_ROOT_PASSWORD=h6626070
+      - MYSQL_PASSWORD=h6626070
+    restart: always
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysqldb:/var/lib/mysql
+
+volumes:
+  mysqldb:
