@@ -65,18 +65,19 @@ On Failure
 <br>
 
 # @EnableWebSecurity
-- To enable Spring Security's web security support and provide Spring MVC 
+
+- To enable Spring Security's web security support and provide Spring MVC
   integration
 - Exposes two beans to set some specifics for the web security configuration
-  1. `SecurityFilterChain`
-  2. `UserDetailsService`
-
+    1. `SecurityFilterChain`
+    2. `UserDetailsService`
 
 <br>
 
 # Filters in Spring Web Applications
 
 Common use cases of filters are
+
 - Logging requests and response
 - Logging request processing time
 - Formatting of request body or header
@@ -89,27 +90,44 @@ Common use cases of filters are
 The `Filter` Interface contains the three methods
 
 `init()`
-- Web container call this method to indicate a filter is being placed into 
+
+- Web container call this method to indicate a filter is being placed into
   service.
-- Web container cannot place the filter into service if the method throws a 
-  `ServletException` or does not return within a specified time period by 
+- Web container cannot place the filter into service if the method throws a
+  `ServletException` or does not return within a specified time period by
   the web container
 
 <br>
 
 `doFilter`
-- invokes this method everytime when the client sends a request or 
+
+- invokes this method everytime when the client sends a request or
   application sends back a response
 
 <br>
 
 `destroy()`
-- Web container call this method to indicate to a filter that it is being 
+
+- Web container call this method to indicate to a filter that it is being
   taken out of service
 
+<br>
+<br>
 
+# `GrantedAuthority` interface
 
+- Interface to get an authority to authorize/control an access.
+- Think of it as a "permission" which are expressed as strings
 
+<br>
+<br>
+
+# `antMatchers` vs `mvcMatchers`
+
+- antMatcher("/users/**") matches any path starting with /users
+- antMatchers("/users") matches only the exact /users URL
+- mvcMatchers("/users") matches /users, /users/, /users.html
+- mvcMatchers is more new
 
 
 
