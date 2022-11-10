@@ -127,10 +127,48 @@ The `Filter` Interface contains the three methods
 - antMatcher("/users/**") matches any path starting with /users
 - antMatchers("/users") matches only the exact /users URL
 - mvcMatchers("/users") matches /users, /users/, /users.html
-- mvcMatchers is more new
+- mvcMatchers is more new and more secure (needs more research why)
+
+
+<br>
+<br>
+
+# OAuth
+
+- Allows one application to get access to another application user's data 
+  without user sharing its userId and password
+- Federated Authentication, Delegated Authorisation
+
+![plot](../images/oauth.png)
+
+<br>
+
+Overview of OAuth Key Components
+
+- Client
+- Authorization Server
+- Resource Server
+
+![plot](../images/oauth_flow.png)
+
+
+<br>
+
+### Grant Types
+- Authorization Code
+- Password
+- Client Credentials 
+- Refresh Token (Has to be used with the 3 above)
+
+<br>
+<br>
 
 
 
+# Additional Notes
+- To implement custom authentication logic, the parameters we pass to 
+  authenticate the method of AuthenticationManager is 
+  `UsernamePasswordAuthenticationToken`
 
 
 

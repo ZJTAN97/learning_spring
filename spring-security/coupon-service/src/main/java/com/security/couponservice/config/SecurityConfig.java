@@ -29,24 +29,30 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-        http.formLogin();
         http.authorizeRequests()
-          .mvcMatchers(HttpMethod.GET, "/coupon/**", "/", "/index")
+          .mvcMatchers(HttpMethod.GET, "/couponapi/coupons/{code:^[A-Z]*$}", "/index", "/showGetCoupon",
+            "/getCoupon", "/couponDetails")
           .hasAnyRole("USER", "ADMIN")
-          .mvcMatchers(HttpMethod.POST, "/coupon")
+          .mvcMatchers(HttpMethod.GET, "/showCreateCoupon", "/createCoupon", "/createResponse")
           .hasRole("ADMIN")
+          .mvcMatchers(HttpMethod.POST, "/getCoupon")
+          .hasAnyRole("USER", "ADMIN")
+          .mvcMatchers(HttpMethod.POST, "/couponapi/coupons", "/saveCoupon", "/getCoupon")
+          .hasRole("ADMIN")
+          .mvcMatchers("/", "/login", "/logout", "/showReg", "/registerUser")
+          .permitAll()
           .anyRequest()
-          .denyAll() // other than the ones specified above, deny the other forms of url
+          .denyAll()
           .and()
-          .csrf()
-          .disable();
+          .logout()
+          .logoutSuccessUrl("/");
+
         return http.build();
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }
