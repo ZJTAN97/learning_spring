@@ -16,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig {
+public class WebSecurityConfig {
     private final UserDetailsServiceImpl userDetailsService;
 
     @Bean
@@ -30,14 +30,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-          .mvcMatchers(HttpMethod.GET, "/couponapi/coupons/{code:^[A-Z]*$}", "/index", "/showGetCoupon",
+          .mvcMatchers(HttpMethod.GET, "/api/coupons/{code:^[A-Z]*$}", "/index", "/showGetCoupon",
             "/getCoupon", "/couponDetails")
           .hasAnyRole("USER", "ADMIN")
           .mvcMatchers(HttpMethod.GET, "/showCreateCoupon", "/createCoupon", "/createResponse")
           .hasRole("ADMIN")
           .mvcMatchers(HttpMethod.POST, "/getCoupon")
           .hasAnyRole("USER", "ADMIN")
-          .mvcMatchers(HttpMethod.POST, "/couponapi/coupons", "/saveCoupon", "/getCoupon")
+          .mvcMatchers(HttpMethod.POST, "/api/coupons", "/saveCoupon", "/getCoupon")
           .hasRole("ADMIN")
           .mvcMatchers("/", "/login", "/logout", "/showReg", "/registerUser")
           .permitAll()

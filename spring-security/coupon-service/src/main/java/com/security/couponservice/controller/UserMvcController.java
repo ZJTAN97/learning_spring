@@ -2,7 +2,7 @@ package com.security.couponservice.controller;
 
 import com.security.couponservice.model.User;
 import com.security.couponservice.repository.UserRepository;
-import com.security.couponservice.service.security.SecurityService;
+import com.security.couponservice.service.security.WebSecurityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class UserMvcController {
 
-    private final SecurityService securityService;
+    private final WebSecurityService securityService;
 
     private final UserRepository userRepository;
 

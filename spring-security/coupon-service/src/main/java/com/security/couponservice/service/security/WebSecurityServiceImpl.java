@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 @Slf4j
-public class SecurityServiceImpl implements SecurityService {
+public class WebSecurityServiceImpl implements WebSecurityService {
 
     private final UserDetailsService userDetailsService;
 

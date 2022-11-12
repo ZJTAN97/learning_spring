@@ -155,10 +155,19 @@ Overview of OAuth Key Components
 <br>
 
 ### Grant Types
-- Authorization Code
+- Authorization Code (login using google, github etc are some examples)
+
+![plot](../images/authorization_code_flow.png)
+
 - Password
-- Client Credentials 
-- Refresh Token (Has to be used with the 3 above)
+
+![plot](../images/password_code_flow.png)
+
+- Client Credentials (microservices, apps talking to other apps)
+
+![plot](../images/client_code_flow.png)
+
+- Refresh Token (Has to be used with the 3 above, complements the 3 above)
 
 <br>
 <br>
