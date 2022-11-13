@@ -21,24 +21,51 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests(
-          (authorizeRequests) -> authorizeRequests.anyRequest().authenticated()
-        ).oauth2Login(
-          (oauth2Customize) -> oauth2Customize
-            .loginProcessingUrl("/login")
-            .loginPage("/oauth2/authorization/google")
-            .successHandler(new AuthenticationSuccessHandler() {
-                @Override
-                public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-                    request.authenticate(response);
-                }
-            })
-            .failureHandler(new AuthenticationFailureHandler() {
-                @Override
-                public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-                    // upon failure of logging in and authentication
-                }
-            }));
+
+        http.authorizeRequests()
+            .anyRequest()
+            .authenticated()
+          .and()
+          .oauth2Login()
+          .loginProcessingUrl("/login")
+          .loginPage("/oauth2/authorization/google")
+          .successHandler(new AuthenticationSuccessHandler() {
+              @Override
+              public void onAuthenticationSuccess(HttpServletRequest request,
+                                                  HttpServletResponse response,
+                                                  Authentication authentication)
+                throws IOException, ServletException {
+                  request.authenticate(response);
+              }
+          })
+          .failureHandler(new AuthenticationFailureHandler() {
+              @Override
+              public void onAuthenticationFailure(HttpServletRequest request,
+                                                  HttpServletResponse response,
+                                                  AuthenticationException exception)
+                throws IOException, ServletException {
+                  // upon failure of logging in and authentication
+              }
+          });
+
+        //        http.authorizeRequests(
+        //          (authorizeRequests) -> authorizeRequests.anyRequest().authenticated()
+        //        ).oauth2Login(
+        //          (oauth2Customize) -> oauth2Customize
+        //            .loginProcessingUrl("/login")
+        //            .loginPage("/oauth2/authorization/google")
+        //            .successHandler(new AuthenticationSuccessHandler() {
+        //                @Override
+        //                public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+        //                    request.authenticate(response);
+        //                }
+        //            })
+        //            .failureHandler(new AuthenticationFailureHandler() {
+        //                @Override
+        //                public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+        //                    // upon failure of logging in and authentication
+        //                }
+        //            }));
 
         return http.build();
     }
