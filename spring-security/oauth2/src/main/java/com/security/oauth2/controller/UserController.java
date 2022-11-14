@@ -18,15 +18,14 @@ public class UserController {
 
     @PostMapping ("/signup-email")
     public String sample() {
+
+
         return "signing up via email";
     }
 
     @GetMapping("/signup-google")
     public String signup() {
-
-        DefaultOidcUser user = (DefaultOidcUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        log.info(user.toString());
-
+        log.info("hello??");
         return "signed up successfully";
     }
 
