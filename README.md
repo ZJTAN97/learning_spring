@@ -173,6 +173,34 @@ public class AppConfig {
 <br>
 <br>
 
+# @ConfigurationProperties
+
+-   allows to map entire Properties and Yaml files into an object easily
+-   By default, the annotation reads from the `application.properties` file.
+
+Example
+
+```
+
+app.color=steelblue
+app.lang=en
+
+
+@ConfigurationProperties(prefix="app")
+public class AppProperties {
+
+    private String color;
+    private String lang;
+
+    ... getters, setters
+
+}
+
+```
+
+<br>
+<br>
+
 # JPA (Java Persistence API)
 
 -   Used to examine, control and persist data between Java objects and relational databases.
@@ -221,7 +249,7 @@ Pros
 
 Cons
 
--   Large programming overhead -   No encapsulaion
+-   Large programming overhead - No encapsulaion
 -   Hard to implement MVC concept
 -   Queries are DBMS specifics
 
