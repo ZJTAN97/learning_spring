@@ -129,13 +129,12 @@ The `Filter` Interface contains the three methods
 - mvcMatchers("/users") matches /users, /users/, /users.html
 - mvcMatchers is more new and more secure (needs more research why)
 
-
 <br>
 <br>
 
 # OAuth
 
-- Allows one application to get access to another application user's data 
+- Allows one application to get access to another application user's data
   without user sharing its userId and password
 - Federated Authentication, Delegated Authorisation
 
@@ -155,6 +154,7 @@ Overview of OAuth Key Components
 <br>
 
 ### Grant Types
+
 - Authorization Code (login using google, github etc are some examples)
 
 ![plot](../images/authorization_code_flow.png)
@@ -172,13 +172,14 @@ Overview of OAuth Key Components
 <br>
 <br>
 
-
-
 # Additional Notes
-- To implement custom authentication logic, the parameters we pass to 
-  authenticate the method of AuthenticationManager is 
+
+- To implement custom authentication logic, the parameters we pass to
+  authenticate the method of AuthenticationManager is
   `UsernamePasswordAuthenticationToken`
 
+<br>
+<br>
 
 
 
