@@ -78,7 +78,7 @@ html)
 Spring Boot automatically
 
 -   Enables Spring Security's default configuration, which creates a servlet
-    `Filter` as a bean named `springSecurityFilyerChain`. This bean is
+    `Filter` as a bean named `springSecurityFilterChain`. This bean is
     responsible for all the security (protecting URLs, validation etc).
 -   Creates `UserDetailsService` bean with username of `user` and randomly
     generated password to console
@@ -221,14 +221,47 @@ Collection<? extends GrantedAuthority> authorities = authentication.getAuthoriti
 
 ### SecurityContext
 
--   to be populated
+-   The SecurityContext is obtained from the SecurityContextHolder. The SecurityContext contains an `Authentication` object.
 
 <br>
 
-### `GrantedAuthority` interface
+### Authentication
+
+-   Servers two main purposes within Spring Security
+
+    -   an input to `AuthenticationManager` to provide the credentials a user has provided to authenticate.
+    -   Represents the currently authenticated user. Current `Authentication` can be obtained from the `SecurityContext`.
+
+-   contains the following:
+
+    -   `principal` which identifies the user.
+    -   `credentials` often a password
+    -   `authorities` the GrantedAuthority are high level permissions the user is granted, examples are roles or scopes
+
+<br>
+
+### GrantedAuthority (interface)
 
 -   Interface to get an authority to authorize/control an access.
 -   Think of it as a "permission" which are expressed as strings
+
+<br>
+
+### AuthenticationManager
+
+-   is the API that defines how Spring Security Filters perform authentication
+-   The `Authentication` that is returned is then set on the `SecurityContextHolder` by the controller (i.e. spring security filters) that invoked the `AuthenticationManager`.
+
+<br>
+
+### ProviderManager (could be what you need for your current task at work/project)
+
+-   ProviderManager delegates to a `List` of AuthenticationProviders. Each AuthenticationProvider has an opportunity to indicate that authentication should be successful, fail.
+
+![plot](../images/providermanager.png)
+
+-   In practice each AuthenticationProvider knows how to perform a specific type of authentication. For example, one AuthenticationProvider might be able to validate a username/password, while another might be able to authenticate a SAML assertion.
+-   This allows each AuthenticationProvider to do a very specific type of authentication, while supporting multiple types of authentication and only exposing a single AuthenticationManager bean.
 
 <br>
 <br>
