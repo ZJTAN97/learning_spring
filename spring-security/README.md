@@ -70,7 +70,7 @@ On Failure
 
 <br>
 
-## Additional Notes from Docs about Spring Boot Auto Configuration
+### Additional Notes from Docs about Spring Boot Auto Configuration
 
 [docs](https://docs.spring.io/spring-security/reference/servlet/getting-started.
 html)
@@ -83,6 +83,7 @@ Spring Boot automatically
 -   Creates `UserDetailsService` bean with username of `user` and randomly
     generated password to console
 
+<br>
 <br>
 
 # Filters in Spring Web Applications
@@ -127,7 +128,7 @@ The `Filter` Interface contains the three methods
 -   Web container call this method to indicate to a filter that it is being
     taken out of service
 
-## `DelegatingFilterProxy`
+### `DelegatingFilterProxy`
 
 -   A filter implementation that allows briding between Servlet container's
     lifecycle and Spring's `ApplicationContext`.
@@ -157,7 +158,7 @@ public void doFilter(ServletRequest request, ServletResponse response, FilterCha
 
 <br>
 
-## `SecurityFilterChain` and `FilterChainProxy`
+### `SecurityFilterChain` and `FilterChainProxy`
 
 -   Allows delegation to many `Filter` instances through `SecurityFilterChain`.
 -   It is a bean, thus it is typically wrapped in a `DelegatingFilterProxy`
@@ -181,10 +182,11 @@ public void doFilter(ServletRequest request, ServletResponse response, FilterCha
 ![plot](../images/multi-securityfilterchain.png)
 
 <br>
+<br>
 
 # Servlet Authentication Architecture
 
-## Security Context Holder
+### Security Context Holder
 
 ![plot](../images/securitycontextholder.png)
 
@@ -217,11 +219,11 @@ Collection<? extends GrantedAuthority> authorities = authentication.getAuthoriti
 
 <br>
 
-## SecurityContext
+### SecurityContext
 
 <br>
 
-## `GrantedAuthority` interface
+### `GrantedAuthority` interface
 
 -   Interface to get an authority to authorize/control an access.
 -   Think of it as a "permission" which are expressed as strings
@@ -259,7 +261,7 @@ Overview of OAuth Key Components
 
 <br>
 
-## Grant Types
+### Grant Types
 
 -   Authorization Code (login using google, github etc are some examples)
 
