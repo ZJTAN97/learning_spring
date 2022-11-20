@@ -1,4 +1,4 @@
-# Key Security Components
+# <span style="color:green">Key Security Components</span>
 
 The main components of Spring Security are
 
@@ -220,6 +220,8 @@ Collection<? extends GrantedAuthority> authorities = authentication.getAuthoriti
 <br>
 
 ### SecurityContext
+
+-   to be populated
 
 <br>
 
