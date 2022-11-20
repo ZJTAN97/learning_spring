@@ -1,9 +1,4 @@
-## Introduction to Microservices with Spring
-
-<hr>
-<br>
-
-## Spring Cloud Config Server
+# :snowflake: Spring Cloud Config Server :snowflake:
 
 - Provides service and client-side support for externalized configuration in a
   distributed system
@@ -44,10 +39,9 @@ server.port=8071
 ```
 
 <br>
-<hr>
 <br>
 
-## Spring Cloud Gateway
+# :snowflake: Spring Cloud Gateway :snowflake:
 
 - For building an API gateway and is intended to sit between a requester and a
   resource that is being requested.
@@ -57,10 +51,9 @@ Predicates (To check if the requests fulfill a set of given conditions) -->
 Prefilters --> Microservices / Eureka Server
 
 <br>
-<hr>
 <br>
 
-## Eureka Server For naming (Service Discovery)
+# :snowflake: Eureka Server For naming (Service Discovery) :snowflake:
 
 - Service discover and registration deals with the problems about how
   microservices talk to each other, i.e. perform API calls
@@ -85,7 +78,7 @@ Advantages of Service Discovery approach
 <hr>
 <br>
 
-## Spring Cloud Support for Service Discovery & Registration
+# :snowflake: Spring Cloud Support for Service Discovery & Registration :snowflake:
 
 - Spring Cloud Netflix's Eureka Service which act as a service discovery agent (
   other examples include Apache Zookeper, Consul etc.)
@@ -93,10 +86,8 @@ Advantages of Service Discovery approach
 - Netflix Feign client to look up for a service between microservices
 
 <br>
-<hr>
-<br>
 
-## Resiliency in Microservices
+# :snowflake: Resiliency in Microservices :snowflake:
 
 - Resilience4j offers the following patterns for increasing fault tolerance due
   to network problems or failures
@@ -145,10 +136,9 @@ Rate Limiter Pattern
 - Useful against DDOS attacks, protects against cascading failure.
 
 <br>
-<hr>
 <br>
 
-## Distributed Tracing & Log Aggregation
+# :snowflake: Distributed Tracing & Log Aggregation :snowflake:
 
 - Using Spring Cloud Sleuth and Zipkin
 
