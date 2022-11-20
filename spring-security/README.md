@@ -1,4 +1,4 @@
-# <span style="color:green">Key Security Components</span>
+# :snowflake: Key Security Components
 
 The main components of Spring Security are
 
