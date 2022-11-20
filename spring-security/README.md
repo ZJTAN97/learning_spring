@@ -60,7 +60,7 @@ On Failure
 <br>
 <br>
 
-# @EnableWebSecurity
+# :snowflake: @EnableWebSecurity
 
 -   To enable Spring Security's web security support and provide Spring MVC
     integration
@@ -86,7 +86,7 @@ Spring Boot automatically
 <br>
 <br>
 
-# Filters in Spring Web Applications
+# :snowflake: Filters in Spring Web Applications
 
 Spring Security's Servlet support is based on Servlet `Filter`
 
@@ -184,7 +184,7 @@ public void doFilter(ServletRequest request, ServletResponse response, FilterCha
 <br>
 <br>
 
-# Servlet Authentication Architecture
+# :snowflake: Servlet Authentication Architecture
 
 ### Security Context Holder
 
@@ -233,7 +233,7 @@ Collection<? extends GrantedAuthority> authorities = authentication.getAuthoriti
 <br>
 <br>
 
-# `antMatchers` vs `mvcMatchers`
+# :snowflake: `antMatchers` vs `mvcMatchers`
 
 -   antMatcher("/users/\*\*") matches any path starting with /users
 -   antMatchers("/users") matches only the exact /users URL
@@ -243,7 +243,7 @@ Collection<? extends GrantedAuthority> authorities = authentication.getAuthoriti
 <br>
 <br>
 
-# OAuth
+# :snowflake: OAuth
 
 -   Allows one application to get access to another application user's data
     without user sharing its userId and password
@@ -282,7 +282,7 @@ Overview of OAuth Key Components
 <br>
 <br>
 
-# Additional Notes
+# :snowflake: Additional Notes
 
 -   To implement custom authentication logic, the parameters we pass to
     authenticate the method of AuthenticationManager is
