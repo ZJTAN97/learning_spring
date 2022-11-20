@@ -72,8 +72,7 @@ On Failure
 
 ### Additional Notes from Docs about Spring Boot Auto Configuration
 
-[docs](https://docs.spring.io/spring-security/reference/servlet/getting-started.
-html)
+https://docs.spring.io/spring-security/reference/servlet/getting-started.html
 
 Spring Boot automatically
 
@@ -103,30 +102,6 @@ more than one Filter can be used to:
     Filters and Servlet
 
 <br>
-
-The `Filter` Interface contains the three methods
-
-`init()`
-
--   Web container call this method to indicate a filter is being placed into
-    service.
--   Web container cannot place the filter into service if the method throws a
-    `ServletException` or does not return within a specified time period by
-    the web container
-
-<br>
-
-`doFilter`
-
--   invokes this method everytime when the client sends a request or
-    application sends back a response
-
-<br>
-
-`destroy()`
-
--   Web container call this method to indicate to a filter that it is being
-    taken out of service
 
 ### `DelegatingFilterProxy`
 

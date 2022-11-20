@@ -1,13 +1,8 @@
-# learning_spring
+# :snowflake: Spring Dependency Injection :snowflake:
 
-This repository contains my learning process towards the Spring Framework.
-s
+-   Dependency injection in Spring can be done through `constructors`, `setters` or `fields`.
+
 <br>
-<br>
-
-# Spring Dependency Injection
-
--   Depenency injection in Spring can be done through `constructors`, `setters` or `fields`.
 
 `CONSTRUCTOR BASED DEPEDENCY INJECTION`
 
@@ -20,7 +15,6 @@ public class Driver {
     public Driver(License license) {
         this.license = license;
     }
-
 }
 
 ```
@@ -37,19 +31,18 @@ public class Driver {
     public void setLicense(License license) {
         thislicense = license;
     }
-
 }
 
 ```
 
 <br>
 
-Differences between the different types
+### Differences between the different types
 
--   Constructor Injection does not allow you to construct object, until your depdencies are ready.
+-   Constructor Injection does not allow you to construct object, until your dependencies are ready.
 -   Drawback of Setter Injection is security.
--   You can override certain dependency which is not possible with constructor injection as everytime you call the constructor, a new object is created
--   Use setter injection when a number of depedencies are more or you need more readability
+-   You can override certain dependency which is not possible with constructor injection as every time you call the constructor, a new object is created
+-   Use setter injection when a number of dependencies are more or you need more readability
 -   Use Constructor Injection when Object must be created with all of its dependencies.
 
 <br>
@@ -65,7 +58,7 @@ Differences between the different types
 <br>
 <br>
 
-# Spring ApplicationContext (Spring IoC Container)
+# :snowflake: Spring ApplicationContext (Spring IoC Container) :snowflake:
 
 -   Represents the IoC (Inversion of Control) container
 -   Spring container is responsible for instantiating, configuring and assembling objects known as beans as well as managing their lifecycle
@@ -76,16 +69,16 @@ Differences between the different types
 <br>
 <br>
 
-# @SpringBootApplication annotation
+# :snowflake: @SpringBootApplication :snowflake:
 
 -   This single annotation is equivalent to using @Configuration, @EnableAutoConfiguration, @ComponentScan
 
 <br>
 <br>
 
-# @Configuration annotation
+# :snowflake: @Configuration :snowflake:
 
--   The @Configuration annotation indicates that the class has @Bean definitio methods. So Spring container can process the class and generate Spring Beans to be used in the application.
+-   The @Configuration annotation indicates that the class has @Bean definition methods. So Spring container can process the class and generate Spring Beans to be used in the application.
 
 Example use case
 
@@ -119,6 +112,8 @@ public class MySpringApp {
 
 ```
 
+<br>
+
 ```
 @Configuration
 public class AppConfig {
@@ -139,7 +134,7 @@ public class AppConfig {
 <br>
 <br>
 
-# @Bean annotation (and what are Beans?)
+# :snowflake: @Bean :snowflake:
 
 ### What is a Bean?
 
@@ -148,6 +143,8 @@ public class AppConfig {
 -   A bean is an object that is instantiated, assembled and otherwise managed by Spring IoC Contaner
 -   For a bean with the default singleton scope, Spring first checks if a cached instance of the bean already exists, and only creates a new one if it doesn't.
 
+<br>
+
 ### How does a bean gets converted to JSON?
 
 -   @ResponseBody + JacksonHttpMessageConverters
@@ -155,7 +152,7 @@ public class AppConfig {
 <br>
 <br>
 
-# @Autowired annotation
+# :snowflake: @Autowired :snowflake:
 
 -   Allows Spring to resolve and inject collaborating beans into our bean.
 -   The annotation is used for automatic dependency injection
@@ -163,7 +160,7 @@ public class AppConfig {
 <br>
 <br>
 
-# @Component
+# :snowflake: @Component :snowflake:
 
 -   An annotation that allows Spring to automatically detect our custom beans
 -   Spring will Scan our application for classes annotated with @Component, insantiate them and inject any specified dependencies into them
@@ -173,15 +170,16 @@ public class AppConfig {
 <br>
 <br>
 
-# @ConfigurationProperties
+# :snowflake: @ConfigurationProperties :snowflake:
 
 -   allows to map entire Properties and Yaml files into an object easily
 -   By default, the annotation reads from the `application.properties` file.
 
+<br>
+
 Example
 
 ```
-
 app.color=steelblue
 app.lang=en
 
@@ -201,7 +199,7 @@ public class AppProperties {
 <br>
 <br>
 
-# JPA (Java Persistence API)
+# :snowflake: JPA (Java Persistence API) :snowflake:
 
 -   Used to examine, control and persist data between Java objects and relational databases.
 -   Considered as a link between a object-oriented model and a relational database system.
@@ -219,7 +217,7 @@ Key Features of JPA
 <br>
 <br>
 
-# Hibernate (an ORM tool essentially)
+# :snowflake: Hibernate (an ORM tool) :snowflake:
 
 -   Main feature of hibernate is to map Java classes to database tables
 -   Hibernate is an IMPLEMENTATION of JPA guidelines.
@@ -228,7 +226,7 @@ Key Features of JPA
 <br>
 <br>
 
-# Difference between JPA and JDBC
+# :snowflake: Difference between JPA and JDBC :snowflake:
 
 Overview
 
@@ -236,7 +234,7 @@ Overview
 
 <br>
 
-<b>JDBC</b>
+### JDBC
 
 -   an API for the Java programming language that defines how a client can access a database
 -   Programmers can use these standard interfaces and classes to write applications that connect with dbs, send SQL queries and process the result.
@@ -255,7 +253,7 @@ Cons
 
 <br>
 
-<b>JPA</b>
+### JPA
 
 -   A Java standard for binding Java objects to records in a relational database.
 -   One of the possible soluions for ORM, where developers can perform CRUD operations on Relational databases using Java Objects (POJO).
