@@ -292,6 +292,15 @@ Overview of OAuth Key Components
 <br>
 <br>
 
+# :snowflake: Add Filter Methods :snowflake:
+
+-   `.addFilter()` You can add only instance of spring defined filters or you can add sub class of those spring security defined filters. For example
+    `.addFilter(customAuthFilter, UsernamePasswordAuthenticationFilter.class)` customAuthFilter should be instance of `UsernamePasswordAuthenticationFilter` subclass or instance of `UsernamePasswordAuthenticationFilter`.
+
+-   `.addFilterAfter()` and `.addFilterBefore()` Here filter can be any custom filter. However, the custom filter should be implementation of GenericFilterBean. In most cases, the implementation of `OncePerRequestFilter` will be used.
+
+<br>
+<br>
 # :snowflake: Additional Notes :snowflake:
 
 -   To implement custom authentication logic, the parameters we pass to
