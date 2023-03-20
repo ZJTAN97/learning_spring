@@ -18,4 +18,8 @@ public class CarDto {
     private String driverName;
 
     private int age;
+
+    private String additionalField1;
+
+    private String additionalField2;
 }
