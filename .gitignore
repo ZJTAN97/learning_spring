@@ -14,6 +14,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+/**/.spotless-index
+.spotless-index
 
 ### STS ###
 .apt_generated

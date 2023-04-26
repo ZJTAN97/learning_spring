@@ -1,10 +1,10 @@
-package com.sample.mapstruct;
+package com.sample.mongo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MapstructApplicationTests {
+class MongoSpringApplicationTests {
 
     @Test
     void contextLoads() {}

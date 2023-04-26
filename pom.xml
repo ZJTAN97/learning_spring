@@ -17,11 +17,12 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <modules>
+        <module>lombok</module>
         <module>jackson</module>
         <module>mapstruct</module>
         <module>spring-profiles</module>
-<!--        <module>spring-data</module>-->
-<!--        <module>spring-security</module>-->
+        <module>spring-security</module>
+        <module>spring-data</module>
     </modules>
 
     <properties>

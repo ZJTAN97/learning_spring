@@ -1,5 +1,6 @@
 package com.sample.security.config;
 
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -7,8 +8,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 @Slf4j
@@ -25,7 +24,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
             throw new BadCredentialsException("Wrong credentials");
         }
     }
-
 
     @Override
     public boolean supports(Class<?> authentication) {

@@ -18,5 +18,4 @@ public class Car {
     private Driver driver;
 
     private String additionalField1;
-
 }

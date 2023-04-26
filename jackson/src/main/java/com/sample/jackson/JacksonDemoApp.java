@@ -1,7 +1,6 @@
 package com.sample.jackson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -12,6 +11,5 @@ public class JacksonDemoApp {
         Car car = new Car("Black", "Tesla");
 
         objectMapper.writeValue(new File("car.json"), car);
-
     }
 }

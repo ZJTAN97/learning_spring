@@ -1,12 +1,12 @@
-package com.sample.mapstruct;
+package com.sample.mongo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MapstructApplication {
+public class MongoSpringApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MapstructApplication.class, args);
+        SpringApplication.run(MongoSpringApplication.class, args);
     }
 }
